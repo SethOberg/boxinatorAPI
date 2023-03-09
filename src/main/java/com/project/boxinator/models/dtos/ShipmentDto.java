@@ -2,8 +2,6 @@ package com.project.boxinator.models.dtos;
 
 import com.project.boxinator.enums.WeightOption;
 import com.project.boxinator.models.ShipmentStatusHistory;
-import com.project.boxinator.models.User;
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.HashSet;

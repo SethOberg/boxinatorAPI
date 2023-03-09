@@ -1,16 +1,13 @@
 package com.project.boxinator.models.dtos;
 
 import com.project.boxinator.enums.TypeOfUser;
-import com.project.boxinator.models.Shipment;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Data
-public class UserDto {
+public class BoxinatorUserDto {
     private int Id;
     private String firstName;
     private String lastName;

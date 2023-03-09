@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,11 +14,10 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="shipmentUser")
-public class User {
+public class BoxinatorUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private int id;
     @Column(length = 50)
     private String firstName;
     @Column(length = 50)
@@ -38,10 +36,21 @@ public class User {
     private String contactNumber;
     @Column(nullable = false)
     private TypeOfUser typeOfUser;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "boxinatorUser")
     private Set<Shipment> shipments = new HashSet<>();
 
-    public void addShipmentToUser(Shipment shipment) { shipments.add(shipment); }
-    public void add(User user) {
+    public BoxinatorUser(String firstName, String lastName, String email, String password, String dateOfBirth, String country, Integer zipCode, String contactNumber, TypeOfUser typeOfUser) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.country = country;
+        this.zipCode = zipCode;
+        this.contactNumber = contactNumber;
+        this.typeOfUser = typeOfUser;
     }
+
+    public void addShipmentToUser(Shipment shipment) { shipments.add(shipment); }
+
 }

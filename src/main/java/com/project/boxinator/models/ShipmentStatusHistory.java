@@ -11,7 +11,7 @@ import java.util.Date;
 public class ShipmentStatusHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private int id;
     private ShipmentStatus shipmentStatus;
     private Date date;
 

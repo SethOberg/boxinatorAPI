@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 
@@ -19,7 +17,7 @@ import java.util.Set;
 public class Shipment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private int id;
 
     @Column(length = 150, nullable = false)
     private String recieverName;
@@ -33,14 +31,13 @@ public class Shipment {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private BoxinatorUser boxinatorUser;
 
 
     @OneToMany(mappedBy = "shipment")
     private Set<ShipmentStatusHistory> shipmentHistory = new HashSet<>();
 
-    public Shipment(int id, String recieverName, WeightOption weightOption, String boxColour, String destinationCountry, Set<ShipmentStatusHistory> shipmentHistory) {
-        Id = id;
+    public Shipment(String recieverName, WeightOption weightOption, String boxColour, String destinationCountry, Set<ShipmentStatusHistory> shipmentHistory) {
         this.recieverName = recieverName;
         this.weightOption = weightOption;
         this.boxColour = boxColour;
@@ -48,8 +45,8 @@ public class Shipment {
         this.shipmentHistory = shipmentHistory;
     }
 
-    public void addUserToShipment(User user) {
-        user.add(user);
+    public void addUserToShipment(BoxinatorUser boxinatorUser) {
+        setBoxinatorUser(boxinatorUser);
     }
 
 

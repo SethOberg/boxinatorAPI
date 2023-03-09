@@ -1,7 +1,6 @@
 package com.project.boxinator.controllers;
 
 import com.project.boxinator.models.Shipment;
-import com.project.boxinator.models.User;
 import com.project.boxinator.services.ShipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

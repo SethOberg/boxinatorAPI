@@ -2,8 +2,8 @@ package com.project.boxinator;
 
 import com.project.boxinator.enums.TypeOfUser;
 import com.project.boxinator.enums.WeightOption;
+import com.project.boxinator.models.BoxinatorUser;
 import com.project.boxinator.models.Shipment;
-import com.project.boxinator.models.User;
 import com.project.boxinator.repositories.ShipmentRepository;
 import com.project.boxinator.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +31,13 @@ public class BoxinatorApplication implements ApplicationRunner {
 
 
 
-		User Milla = new User(1,"Milovan", "Glisovic", "abc@dfg.com", "kpr",
-				"1999-09-15", "Sweden", 21231, "0743-23", TypeOfUser.Guest, new HashSet<>());
-		User Seth = new User(2,"Seth", "Öberg", "abc@dfg.com", "kpr",
-				"1998-09-15", "Sweden", 21231, "0743-23", TypeOfUser.Registered, new HashSet<>());
+		BoxinatorUser Milla = new BoxinatorUser("Milovan", "Glisovic", "abc@dfg.com", "kpr",
+				"1999-09-15", "Sweden", 21231, "0743-23", TypeOfUser.Guest);
+		BoxinatorUser Seth = new BoxinatorUser("Seth", "Öberg", "abc@dfg.com", "kpr",
+				"1998-09-15", "Sweden", 21231, "0743-23", TypeOfUser.Registered);
 
-		userRepository.save(Milla);
-		userRepository.save(Seth);
-
-		Shipment bluebox2 = new Shipment(1, "Greger", WeightOption.PREMIUM, "blue",
-				"Norway", Milla,  new HashSet<>());
+		Shipment bluebox2 = new Shipment("Greger", WeightOption.PREMIUM, "blue",
+				"Norway",  new HashSet<>());
 
 //		Shipment blueBox = new Shipment(1, "Greger", WeightOption.PREMIUM, "blue",
 //				"Norway",  new HashSet<>());
@@ -50,13 +47,14 @@ public class BoxinatorApplication implements ApplicationRunner {
 //				"Denmark",  new HashSet<>());
 //
 //		shipmentRepository.save(blueBox);
-	shipmentRepository.save(bluebox2);
 //		shipmentRepository.save(redBox);
 //		shipmentRepository.save(yellowBox);
 
-//		Milla.addShipmentToUser(blueBox);
-//		blueBox.setUser(Milla);
-
+		Milla.addShipmentToUser(bluebox2);
+		userRepository.save(Milla);
+		userRepository.save(Seth);
+		bluebox2.setBoxinatorUser(Milla);
+		shipmentRepository.save(bluebox2);
 
 
 

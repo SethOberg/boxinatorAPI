@@ -1,8 +1,8 @@
 package com.project.boxinator.mappers;
 
 import com.project.boxinator.models.Shipment;
-import com.project.boxinator.models.User;
-import com.project.boxinator.models.dtos.UserDto;
+import com.project.boxinator.models.BoxinatorUser;
+import com.project.boxinator.models.dtos.BoxinatorUserDto;
 import com.project.boxinator.services.ShipmentService;
 import com.project.boxinator.services.UserService;
 import org.mapstruct.Mapper;
@@ -22,11 +22,11 @@ public abstract class UserMapper {
     private ShipmentService shipmentService;
 
     @Mapping(target = "shipmentsByUser", source = "shipments", qualifiedByName = "shipmentsToIds")
-    public abstract UserDto userToUserDto(User user);
+    public abstract BoxinatorUserDto userToUserDto(BoxinatorUser boxinatorUser);
 
-    public abstract Collection<UserDto> userToUserDto(Collection<User> users);
+    public abstract Collection<BoxinatorUserDto> userToUserDto(Collection<BoxinatorUser> boxinatorUsers);
 
-    public abstract User userDtoToUser(UserDto userDto);
+    public abstract BoxinatorUser userDtoToUser(BoxinatorUserDto boxinatorUserDto);
 
     @Named("shipmentsToIds")
     Set<Integer> mapShipmentsToIds(Set<Shipment> source) {
